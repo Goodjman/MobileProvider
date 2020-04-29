@@ -1,0 +1,134 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Palpatine</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+   <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    
+</head>
+<body>
+    <div class="container col-sm-12" id="mainform">
+            <div id="signupbox" style=" margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                                                           
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="panel-title">Sign Up</div>
+                            <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="/">Sign In</a></div>
+                        </div> 
+                        <div class="panel-body" >
+                            <form class="form-horizontal" role="form" method="post" action="/signup" onSubmit="return checkblank(this);">
+                                <% if (message.length > 0) { %>
+                                         <div class="alert alert-success col-sm-12"><%= message %></div>
+                                <% } %>
+                                <div id="signupalert" style="display:none" class="alert alert-danger">
+                                    <p>Error:</p>
+                                    <span></span>
+                                </div>
+                                    
+                                <div class="form-group">
+                                    <label for="FirstName" class="col-md-3 control-label">First Name</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="FirstName" placeholder="First Name" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Surname" class="col-md-3 control-label">Last Name</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="Surname" placeholder="Last Name" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Patronymic" class="col-md-3 control-label">Patronymic</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="Patronymic" placeholder="Patronymic" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="BirthDate" class="col-md-3 control-label">Bitrh Date</label>
+                                    <div class="col-md-9">
+                                        <input type="date" class="form-control" name="BirthDate" value="2000-01-01" min="1920-01-01" max="2002-12-31" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="PassportSeries" class="col-md-3 control-label">Passport Series</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="PassportSeries" placeholder="MP" required
+                                        minlength="1" maxlength="2">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="PassportNumber" class="col-md-3 control-label">Passport Number</label>
+                                    <div class="col-md-9">
+                                        <input type="number" min="1111111" max="9999999" required class="form-control" name="PassportNumber">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Authority" class="col-md-3 control-label">Authority</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="Authority" placeholder="FBI" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="IssueDate" class="col-md-3 control-label">Passport Issue Date</label>
+                                    <div class="col-md-9">
+                                        <input type="date" class="form-control" name="IssueDate" value="2015-01-01" min="1940-01-01">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Address" class="col-md-3 control-label">Hometown</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="Address"  required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Tarif" class="col-md-3 control-label">Tarif</label>
+                                    <div class="col-md-9">
+                                        <input type="text"  list ="tarifs" class="form-control" name="Tarif" required>
+                                        <datalist id="tarifs">
+                                            <option value="Light">
+                                            <option value="Banana">
+                                            <option value="Modern">
+                                          </datalist>
+                                    </div>
+                                </div>
+                                  <div class="form-group">
+                                    <label for="MobileNumber" class="col-md-3 control-label">Mobile Number</label>
+                                    <div class="col-md-9">
+                                        <input type="number" class="form-control" name="MobileNumber" placeholder="Mobile Number" min="1111111" max="9999999" required>
+                                    </div>
+                                </div>
+                                 <div class="form-group">
+                                    <label for="email" class="col-md-3 control-label">E-mail</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="email" placeholder="E-mail" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pswrd" class="col-md-3 control-label">Password</label>
+                                    <div class="col-md-9">
+                                        <input type="password" class="form-control" name="pswrd" placeholder="Password" required>
+                                    </div>
+                                </div>
+ 
+                                <div class="form-group">
+                                    <!-- Button -->                                       
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Sign Up</button>
+                                        
+                                    </div>
+                                </div>
+                               
+                                
+                                
+                                
+                            </form>
+                         </div>
+                    </div>
+              
+                
+         </div>
+    </div>
+   
+</body>
+</html>
+ 
