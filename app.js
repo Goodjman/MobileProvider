@@ -1,14 +1,14 @@
-var express = require('express')
+const express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
   , path = require('path');
 
-var session = require('express-session');
-var app = express();
-var mysql      = require('mysql');
-var bodyParser=require("body-parser");
-var connection = mysql.createConnection({
+const session = require('express-session');
+const app = express();
+const mysql      = require('mysql');
+const bodyParser=require("body-parser");
+const connection = mysql.createConnection({
               host     : 'localhost',
               user     : 'root',
               password : 'kotor',
@@ -18,7 +18,7 @@ var connection = mysql.createConnection({
 connection.connect();
  
 global.db = connection;
- 
+ //.promise()
 // all environments
 app.set('port', process.env.PORT || 8080);
 app.set('views', __dirname + '/views');
@@ -44,7 +44,7 @@ app.get('/home/dashboard', user.dashboard);//call for dashboard page after login
 app.get('/home/logout', user.logout);//call for logout
 app.get('/home/profile',user.profile);//to render users profile
 
-app.listen(8080)
+app.listen(8080,()=>console.log('Database server started'))
 
 
 

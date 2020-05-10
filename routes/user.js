@@ -3,6 +3,7 @@
 exports.signup = function(req, res){
    message = '';
    if(req.method == "POST"){
+      let today = new Date().toISOString().slice(0, 10);
       var post  = req.body;
       var mail= post.email;
       var pass= post.pswrd;
@@ -18,22 +19,79 @@ exports.signup = function(req, res){
       var hometown=post.Address;
       var tariff=post.Tarif;
 
-      var sql = 
+     /* var sql = 
       `INSERT INTO accounts (email, pswrd) VALUES ('${mail}', MD5('${pass}'));
        INSERT INTO Abonents(Surname,FirstName,Patronymic,BirthDate,PassportSeries,PassportNumber,Authority,IssueDate,Address) 
        VALUES ("${lname}","${fname}","${otec}","${bdate}","${passports}","${passportn}","${author}","${issdate}","${hometown}");
        INSERT INTO contracts(MobileNumber,AbonentID, DealDate ,Tarif,AccountID) 
        VALUES("+37566${mob}",LAST_INSERT_ID(),"2000-05-12","${tariff}",LAST_INSERT_ID());
-       `/*move last insert into contracts in the admin page, where he can easily check exists number or not*/ 
-      var query = db.query(sql, function(err, result) {
+       ` */
+       /*move last insert into contracts in the admin page, where he can easily check exists number or not*/ 
+      //var query = 
+      //888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+      /*db.query(`SELECT AccountID from Accounts where email="${mail}"`, function(err, results){   
+         if(results){
+            message = "Account with this E-mail already exists";
+            res.status(400).send('That user already exists!');
+            res.render('signup.ejs', {message: message });
+            
+         };});
+       db.query(`SELECT AccountID from Contracts where MobileNumber="+37566${mob}"`, function(err, results){   
+         if(results){
+            message = "Account with this mobile number already exists";
+            res.status(400).send('That user already exists!');
+            res.render('signup.ejs',{message: message});
+           
+         };});*/
+      //888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+      db.query(`INSERT INTO accounts (email, pswrd) VALUES ('${mail}', MD5('${pass}'));`, function(err, results) {
          if(err){
             console.log(err);
-            return (res.status(500).json());
+            console.log("Something wrong with accounts table");
+            message = "Account with this E-mail already exists";
+            return res.status(400).send('That user already exists!');
+            //res.render('signup.ejs', {message: message });
           };
-         message = "Succesfully! Your account has been created.";
-         res.render('signup.ejs',{message: message});
+        
+      });
+      req.session.userId = results[0].AccountID;
+      userId=req.session.userId;
+
+      db.query(`INSERT INTO Abonents(Surname,FirstName,Patronymic,BirthDate,PassportSeries,PassportNumber,Authority,IssueDate,Address) 
+      VALUES ("${lname}","${fname}","${otec}","${bdate}","${passports}","${passportn}","${author}","${issdate}","${hometown}");`, function(err, results) {
+         if(err){
+            console.log(err);
+            console.log("Something wrong with abonents table");
+            message = "Incorrect Passport Data input";
+            //db.query(`DELETE  FROM Accounts WHERE AccountID=LAST_INSERT_ID();`, function(err, results){});     
+            //res.render('signup.ejs',{message: message});
+          };
+          
       });
 
+      db.query(`INSERT INTO contracts(MobileNumber,AbonentID, DealDate ,Tarif,AccountID) 
+      VALUES("+37566${mob}",LAST_INSERT_ID(),"${today}","${tariff}",LAST_INSERT_ID());
+      ` , function(err, results) {
+         if(err){
+            console.log(err);
+            console.log("Something wrong with contracts table");
+           /* message = "Account with this mobile number already exists";
+            db.query(`DELETE  FROM Accounts WHERE AccountID=LAST_INSERT_ID();`, function(err, results){if(err){console.log("cant delete in accounts")}}); 
+            db.query(`DELETE  FROM Abonents WHERE AbonentID=LAST_INSERT_ID();`, function(err, results){if(err){console.log("cant delete in abonents")}}); 
+            res.render('signup.ejs',{message: message});*/
+            message = "Account with this mobile number already exists";
+            return res.status(400).send('That user already exists!');
+           // res.render('signup.ejs',{message: message});
+          };
+          message = "Succesfully! Your account has been created.";
+          res.render('signup.ejs',{message: message});
+      });
+   /*   db.query(`INSERT INTO accounts (email, pswrd) VALUES ('${mail}', MD5('${pass}'));`)
+      .then(result => database.query( `INSERT INTO Abonents(Surname,FirstName,Patronymic,BirthDate,PassportSeries,PassportNumber,Authority,IssueDate,Address) 
+      VALUES ("${lname}","${fname}","${otec}","${bdate}","${passports}","${passportn}","${author}","${issdate}","${hometown}");` ))
+      .then(result=>{message = "Succesfully! Your account has been created.";
+      res.render('signup.ejs',{message: message})});
+*/
    } else {
       res.render('signup');
    }
@@ -54,13 +112,12 @@ exports.login = function(req, res){
          if(err){
             console.log(err);
             console.log("loginpageerror");
-            return (res.status(500).json());
           };
          if(results.length){
-            req.session.userId = results[0].AccountID;
+           req.session.userId = results[0].AccountID;
             req.session.user = results[0];
             console.log(results[0].AccountID);
-            res.redirect('/home/dashboard');
+            res.redirect("/home/dashboard");
          }
          else{
             message = 'Wrong Credentials.';
@@ -75,22 +132,20 @@ exports.login = function(req, res){
 };
 //-----------------------------------------------dashboard page functionality----------------------------------------------
            
-exports.dashboard = function(req, res, next){
-           
+exports.dashboard = function(req, res){
+           //= function(req, res, next){
    var user =  req.session.user,
    userId = req.session.userId;
-   console.log('ddd='+userId);
+   console.log('current id ='+userId);
    if(userId == null){
       res.redirect("/login");
       return;
    }
 
-   var sql="SELECT * FROM Accounts WHERE AccountID='"+userId+"'";
-
-   db.query(sql, function(err, results){
+   db.query(`SELECT * FROM Accounts WHERE AccountID=${userId};`, function(err, results){
       if(err){
          console.log(err);
-         return (res.status(500).json());
+         console.log("dashboard crashed")
        };
       res.render('dashboard.ejs', {user:user});    
    });       
@@ -100,7 +155,6 @@ exports.logout=function(req,res){
    req.session.destroy(function(err) {
       if(err){
          console.log(err);
-         return (res.status(500).json());
        };
       res.redirect("/login");
    })
@@ -114,13 +168,16 @@ exports.profile = function(req, res){
       return;
    }
 
-   var sql="SELECT * FROM Accounts WHERE AccountID='"+userId+"'";          
-   db.query(sql, function(err, result){  
+   var sql=`SELECT Accounts.AccountID,Abonents.Surname,Abonents.FirstName FROM Accounts  JOIN Abonents on (Accounts.AccountID=Abonents.AbonentID) WHERE AccountID=${userId};`;          
+   db.query(sql, function(err, results){  
       if(err){
          console.log(err);
-         return (res.status(500).json());
        };
-      res.render('profile.ejs',{data:result});
+      
+         req.session.user = results[0];
+         console.log(results[0].Surname);
+         
+      res.render('profile.ejs',{user:results});
    });
 };
 //---------------------------------edit users details after login----------------------------------
@@ -131,11 +188,10 @@ exports.editprofile=function(req,res){
       return;
    }
 
-   var sql="SELECT * FROM Accounts WHERE AccountID='"+userId+"'";
+   var sql=`SELECT * FROM Accounts WHERE AccountID=${userId};`;
    db.query(sql, function(err, results){
       if(err){
          console.log(err);
-         return (res.status(500).json());
        };
       res.render('edit_profile.ejs',{data:results});
    });

@@ -34,13 +34,20 @@ select * from Abonents;
  ) AUTO_INCREMENT=66;
  Insert into accounts values (1,12000,500,500,"user1@gmail.com",MD5('pass1234')),(2,200,50,100,"user2@gmail.com",MD5('pass2234')),(3,10,5,5,"user3@gmail.com",MD5('pass3234')),(4,6000,200,200,"user4@gmail.com",MD5('pass4234')),(5,2000,200,200,"user5@gmail.com",MD5('pass5234')),(6,5000,5000,5000,"user6@gmail.com",MD5('pass6234')),(7,110,10,500,"user7@gmail.com",MD5('pass7234')),(8,120,400,400,"user8@gmail.com",MD5('pass8234')),(9,500,50,50,"user9@gmail.com",MD5('pass9234')),(10,440,14,10,"user10@gmail.com",MD5('pass10234')),(11,5000,100,1000,"user11@gmail.com",MD5('pass11234')),(12,600,800,800,"user12@gmail.com",MD5('pass12234'));
   select* from Accounts;
+  DELETE  FROM Abonents WHERE AbonentID=95;
+   DELETE  FROM Accounts WHERE AccountID=96;
+  select* from abonents;
+  select* from contracts;
   drop table accounts;
   INSERT INTO accounts (email, pswrd) VALUES ('some@example.com', MD5('kek'));
   INSERT INTO Abonents(Surname,FirstName,Patronymic,BirthDate,PassportSeries,PassportNumber,Authority,IssueDate,Address) 
        VALUES ("oleg","oleg","olegovich","1900-10-10","MM","1009000","FBI","1900-10-10","London");
        INSERT INTO contracts (MobileNumber,AbonentID, DealDate,Tarif,AccountID) 
        VALUES("+375661001001",LAST_INSERT_ID(),"2000-12-05","Light",LAST_INSERT_ID()); 
+       SELECT AccountID,email, pswrd FROM Accounts WHERE email='user1@gmail.com' and pswrd = MD5('pass1234');
   /*insert(without id) and recieve id by selecting using same data from insert OR BETTER USE LAST_AUTO_INCREMENT*/
+  SELECT * FROM Accounts WHERE AccountID=70;
+  
   
 create table Contracts (
  MobileNumber varchar(15) not null,

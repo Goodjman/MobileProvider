@@ -1,5 +1,27 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Palpatine</title>
+     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+   <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+</head>
+<body>
+  <div class="container">
 
-   <%- include header %>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/home/dashboard">Home</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/home/logout">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
    <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
         <h1>Welcome to Palpatine</h1>
@@ -8,4 +30,23 @@
           <a class="btn btn-lg btn-primary" href="/home/profile" role="button">Profile view »</a>
         </p>
       </div>
-    <%- include footer %>
+    </div>
+  </body>
+ <!-- <div class="navbar-fixed-bottom row-fluid">
+    <div class="navbar-inner">
+        <div class="authors">
+          <style>
+          p { 
+            font-size: 120%; 
+            font-family: Verdana, Arial, Helvetica, sans-serif; 
+            color: #ccccd1;
+           }
+           .authors{
+           background-color:rgb(127, 156, 236);
+           }
+          </style>
+          <p>Some text</p>
+          </div>
+          </div>
+          </div>-->
+</html>
