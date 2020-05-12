@@ -35,15 +35,16 @@ app.use(session({
  
 
  
-app.get('/', routes.index);//call for main index page
-app.get('/signup', user.signup);//call for signup page
-app.post('/signup', user.signup);//call for signup post 
-app.get('/login', routes.index);//call for login page
-app.post('/login', user.login);//call for login post
-app.get('/home/dashboard', user.dashboard);//call for dashboard page after login
-app.get('/home/logout', user.logout);//call for logout
-app.get('/home/profile',user.profile);//to render users profile
-
+app.get('/', routes.index);
+app.get('/signup', user.signup);
+app.post('/signup', user.signup);
+app.get('/login', routes.index);
+app.post('/login', user.login);
+app.get('/home/dashboard', user.dashboard);
+app.get('/home/logout', user.logout);
+app.get('/home/profile',user.profile);
+app.get('/home/edit_profile',user.editprofile);
+app.post('/home/edit_profile',user.editprofile);
 app.listen(8080,()=>console.log('Database server started'))
 
 

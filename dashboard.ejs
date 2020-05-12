@@ -1,0 +1,97 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Palpatine</title>
+     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+   <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+</head>
+<body>
+  <div class="container">
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/home/dashboard">Home</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/home/logout">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+   <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>Welcome to Palpatine</h1>
+        <p>Manage your Account! </p>
+        <p>
+          <a class="btn btn-lg btn-primary" href="/home/profile" role="button">Profile view »</a>
+        </p>
+      </div>
+
+      <div class="panel panel-info ">
+        <div class="panel-heading"><h2><%=user[0].ServiceName%></h2></div>
+        <div class="panel-body"><h3><%=user[0].ServiceDescription%></h3>
+          <h6 ><%=user[0].Price %> penny per month</h6>
+        </div>
+        
+      </div>
+   
+    <div class="panel panel-info ">
+        <div class="panel-heading"><h2><%=user[1].ServiceName%></h2></div>
+        <div class="panel-body"><h3><%=user[1].ServiceDescription%></h3>
+          <h6 ><%=user[1].Price%> penny per month</h6>
+        </div>
+        
+      </div>
+
+      <div class="panel panel-info ">
+        <div class="panel-heading"><h2><%=user[2].ServiceName%></h2></div>
+        <div class="panel-body"><h3><%=user[2].ServiceDescription%></h3>
+          <h6 ><%=user[2].Price%> penny per month</h6>
+        </div>
+        
+      </div>
+
+      <div class="panel panel-info ">
+        <div class="panel-heading"><h2><%=user[3].ServiceName%></h2></div>
+        <div class="panel-body"><h3><%=user[3].ServiceDescription%></h3>
+          <h6 ><%=user[3].Price%> penny per month</h6>
+        </div>
+        
+      </div>
+
+      <div class="panel panel-info ">
+        <div class="panel-heading"><h2><%=user[4].ServiceName%></h2></div>
+        <div class="panel-body"><h3><%=user[4].ServiceDescription%></h3>
+          <h6 ><%=user[4].Price%> penny per month</h6>
+        </div>
+        
+      </div>
+     
+
+
+
+    </div>
+  </body>
+ <!-- <div class="navbar-fixed-bottom row-fluid">
+    <div class="navbar-inner">
+        <div class="authors">
+          <style>
+          p { 
+            font-size: 120%; 
+            font-family: Verdana, Arial, Helvetica, sans-serif; 
+            color: #ccccd1;
+           }
+           .authors{
+           background-color:rgb(127, 156, 236);
+           }
+          </style>
+          <p>Some text</p>
+          </div>
+          </div>
+          </div>-->
+</html>

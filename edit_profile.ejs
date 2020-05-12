@@ -1,0 +1,81 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Palpatine</title>
+     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+   <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+</head>
+<body>
+  <div class="container">
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/home/dashboard">Home</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/home/logout">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  
+    
+<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+    
+        <div class="panel panel-info">
+          <div class="panel-heading">
+              <div class="panel-title"><%=user[0].FirstName%> <%=user[0].Surname%></div>
+              <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="/home/profile">Back</a></div>
+          </div> 
+          <div class="panel-body" >
+              <form class="form-horizontal" role="form" method="post" action="/signup" onSubmit="return checkblank(this);">
+                  <% if (message.length > 0) { %>
+                           <div class="alert alert-success col-sm-12"><%= message %></div>
+                  <% } %>
+                  <div id="signupalert" style="display:none" class="alert alert-danger">
+                      <p>Error:</p>
+                      <span></span>
+                  </div>
+                  <div class="form-group">
+                    <label for="pswrd" class="col-md-3 control-label">Password</label>
+                    <div class="col-md-9">
+                        <input type="password" class="form-control" name="pswrd" placeholder="Password" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                  <label for="Tarif" class="col-md-3 control-label">Tarif</label>
+                  <div class="col-md-9">
+                      <input type="text"  list ="tarifs" class="form-control" name="Tarif" required>
+                      <datalist id="tarifs">
+                          <option value="Light">
+                          <option value="Banana">
+                          <option value="Modern">
+                        </datalist>
+                  </div>
+              </div>
+                <div class="form-group">
+                    <!-- Button -->                                       
+                    <div class="col-md-offset-3 col-md-9">
+                        <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Confirm changes</button>
+                        
+                    </div>
+                </div>
+               
+                
+                
+                
+            </form>
+         </div>
+    </div>
+                
+    
+            
+  </div>
+  
+  </div>
+</body>
+</html>

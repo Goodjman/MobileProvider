@@ -1,3 +1,7 @@
+create database course;
+use course;
+
+
 create database mobile;
 use mobile;
 
@@ -21,7 +25,8 @@ create table Abonents (
  Insert into Abonents values (1,"Gurman","Artyom","Vitalyevich","2000-05-12","MP",3946666,"MIA","2015-04-09","Minsk"),(2,"Lenin","Vladimir","Ilyich","1900-11-07","BB",1941231,"CKPPS","1924-04-01","Leningrad"),(3,"Sipach","Sergey","Vladimirovich","1999-06-15","MP",3943333,"MIA","2012-12-09","Borisov"),(4,"Letov","Pavel","Sergeevich","1990-03-12","MP",3221236,"MIA","2010-09-09","Pinsk"),(5,"Olenenko","Arkadii","Sergeevich","1999-10-10","MP",2121236,"MIA","2015-08-28","Brest"),(6,"Lenonn","John","","1970-04-19","MP",2324489,"MIA","2008-08-22","London"),(7,"Vasilevich","Kirill","Sergeevich","2002-04-10","MP",3459857,"MIA","2020-02-11","Chyrnobil"),(8,"Piuta","Pavel","Sergeevich","1990-06-30","MP",3211144,"MIA","2012-12-29","Mogilev"),(9,"Pivo","Oleg","Anatolyevich","1960-01-03","PV",3666632,"MIA","2005-04-03","Lida"),(10,"Platonov","Alexandr","Vladimirovich","1978-08-12","MP",3786326,"MIA","2003-10-19","Jodino"),(11,"Gibkiy","Andrey","Andreevich","2004-03-12","MP",3089323,"MIA","2019-02-21","Vitebsk"),(12,"James","Bond","Sknopkovich","1989-05-12","BB",3269789,"MIA","2008-09-10","Las-Vegas");
 drop table Abonents;
 select * from Abonents;
-
+INSERT INTO Abonents(Surname,FirstName,Patronymic,BirthDate,PassportSeries,PassportNumber,Authority,IssueDate,Address) 
+      VALUES ("Klichevich","Kirill","Kirillovich","1988-08-08","MY","3234554","MIU","2020-02-02","Klichev");
  create table Accounts (
  AccountID smallint not null AUTO_INCREMENT,
  Balance int default 0,
